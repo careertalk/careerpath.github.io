@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<style>
+body {
+  font-family: "Segoe UI", "Hiragino Sans", "Meiryo", sans-serif;
+  background-color: #fafafa;
+  padding: 30px;
+  line-height: 1.6;
+}
+.phase {
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  background-color: #fff;
+}
+.phase h2 {
+  margin-top: 0;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #ccc;
+}
+.stage {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 12px;
+  margin-top: 15px;
+}
+.box {
+  flex: 1;
+  border-radius: 10px;
+  padding: 14px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: 0.2s;
+}
+.box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+.now { background-color: #fff3e0; }
+.mid { background-color: #ffe0b2; }
+.long { background-color: #c8e6c9; }
+.milestone { background-color: #b2ebf2; font-weight: bold; }
+.goal { background-color: #f8bbd0; font-weight: bold; }
+
+.arrow {
+  text-align: center;
+  margin: 12px 0;
+  font-size: 24px;
+  color: #888;
+}
+</style>
+</head>
+<body>
+
+<h1>キャリアクリティカルパス（時間軸 × キャリア資本）</h1>
+
+<div class="phase">
+  <h2>現在：基盤形成フェーズ</h2>
+  <div class="stage">
+    <div class="box now">💼 <b>本業：</b>成果・信頼基盤の構築</div>
+    <div class="box now">🚀 <b>新規事業：</b>市場調査・仮説検証</div>
+    <div class="box now">💻 <b>開発DX：</b>スキル習得・小規模PoC</div>
+  </div>
+</div>
+
+<div class="arrow">⬇️</div>
+
+<div class="phase">
+  <h2>中期：成長フェーズ（〜3年）</h2>
+  <div class="stage">
+    <div class="box mid">👥 <b>本業：</b>リーダー経験・部門横断推進</div>
+    <div class="box mid">🧩 <b>新規事業：</b>MVP開発・事業検証</div>
+    <div class="box mid">⚙️ <b>開発DX：</b>改善・自動化・AI導入</div>
+  </div>
+  <div class="stage">
+    <div class="box milestone">🌿 <b>転職：</b>新しい環境で再挑戦・キャリア転換</div>
+  </div>
+</div>
+
+<div class="arrow">⬇️</div>
+
+<div class="phase">
+  <h2>長期：統合・発揮フェーズ（5年以上）</h2>
+  <div class="stage">
+    <div class="box long">🏢 <b>本業：</b>戦略的ポジション・経営参画</div>
+    <div class="box long">🌱 <b>新規事業：</b>スケール化・収益モデル構築</div>
+    <div class="box long">🧠 <b>開発DX：</b>全社変革・技術戦略リード</div>
+  </div>
+  <div class="stage">
+    <div class="box goal">🌟 <b>ゴール：</b>複数軸統合によるキャリア資本の確立</div>
+  </div>
+</div>
+
+</body>
+</html>
