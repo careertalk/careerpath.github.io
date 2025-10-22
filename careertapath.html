@@ -4,94 +4,143 @@
 <meta charset="UTF-8">
 <style>
 body {
-  font-family: "Segoe UI", "Hiragino Sans", "Meiryo", sans-serif;
-  background-color: #fafafa;
-  padding: 30px;
+  font-family: "Hiragino Sans", "Meiryo", sans-serif;
+  background: linear-gradient(to top right, #f9f9f9, #eef4ff);
+  margin: 0;
+  padding: 40px;
   line-height: 1.6;
 }
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 200px);
+  gap: 24px;
+  position: relative;
+}
 .phase {
-  border: 2px solid #ccc;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 30px;
-  background-color: #fff;
-}
-.phase h2 {
-  margin-top: 0;
-  padding-bottom: 5px;
-  border-bottom: 2px solid #ccc;
-}
-.stage {
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  gap: 12px;
-  margin-top: 15px;
-}
-.box {
-  flex: 1;
   border-radius: 10px;
   padding: 14px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  font-size: 14px;
   background-color: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  transition: 0.2s;
+  position: relative;
+  transition: all 0.25s ease;
 }
-.box:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+.phase:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 5px 14px rgba(0,0,0,0.15);
 }
+
+/* 色 */
 .now { background-color: #fff3e0; }
 .mid { background-color: #ffe0b2; }
 .long { background-color: #c8e6c9; }
 .milestone { background-color: #b2ebf2; font-weight: bold; }
 .goal { background-color: #f8bbd0; font-weight: bold; }
 
-.arrow {
-  text-align: center;
-  margin: 12px 0;
-  font-size: 24px;
-  color: #888;
+/* 軸ラベル */
+.axisX, .axisY {
+  position: absolute;
+  font-weight: bold;
+  color: #555;
+}
+.axisX {
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.axisY {
+  top: 50%;
+  left: -80px;
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+/* 線でフェーズを結ぶ */
+.connector {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.connector svg {
+  width: 100%;
+  height: 100%;
 }
 </style>
 </head>
 <body>
 
-<h1>キャリアクリティカルパス（時間軸 × キャリア資本）</h1>
+<h1>キャリア資本の上積み × 時間軸マップ</h1>
 
-<div class="phase">
-  <h2>現在：基盤形成フェーズ</h2>
-  <div class="stage">
-    <div class="box now">💼 <b>本業：</b>成果・信頼基盤の構築</div>
-    <div class="box now">🚀 <b>新規事業：</b>市場調査・仮説検証</div>
-    <div class="box now">💻 <b>開発DX：</b>スキル習得・小規模PoC</div>
+<div class="grid">
+  <!-- 縦軸・横軸ラベル -->
+  <div class="axisX">⏳ 時間（現在 → 中期 → 長期）</div>
+  <div class="axisY">📈 キャリア資本（経験 → スキル → 人的資本）</div>
+
+  <!-- 現在層（下段） -->
+  <div class="phase now" style="grid-column:1; grid-row:3;">
+    💼 <b>本業：</b>成果・信頼基盤の構築<br>
+    🧠 実務経験を通じて基礎スキルを強化
   </div>
-</div>
-
-<div class="arrow">⬇️</div>
-
-<div class="phase">
-  <h2>中期：成長フェーズ（〜3年）</h2>
-  <div class="stage">
-    <div class="box mid">👥 <b>本業：</b>リーダー経験・部門横断推進</div>
-    <div class="box mid">🧩 <b>新規事業：</b>MVP開発・事業検証</div>
-    <div class="box mid">⚙️ <b>開発DX：</b>改善・自動化・AI導入</div>
+  <div class="phase now" style="grid-column:2; grid-row:3;">
+    🚀 <b>新規事業：</b>市場調査・仮説検証<br>
+    🔍 企画力・分析力の初期形成
   </div>
-  <div class="stage">
-    <div class="box milestone">🌿 <b>転職：</b>新しい環境で再挑戦・キャリア転換</div>
+  <div class="phase now" style="grid-column:3; grid-row:3;">
+    💻 <b>開発DX：</b>スキル習得・小規模PoC<br>
+    ⚙️ 技術的基盤の獲得
   </div>
-</div>
 
-<div class="arrow">⬇️</div>
-
-<div class="phase">
-  <h2>長期：統合・発揮フェーズ（5年以上）</h2>
-  <div class="stage">
-    <div class="box long">🏢 <b>本業：</b>戦略的ポジション・経営参画</div>
-    <div class="box long">🌱 <b>新規事業：</b>スケール化・収益モデル構築</div>
-    <div class="box long">🧠 <b>開発DX：</b>全社変革・技術戦略リード</div>
+  <!-- 中期層（中段） -->
+  <div class="phase mid" style="grid-column:1; grid-row:2;">
+    👥 <b>本業：</b>リーダー経験・部門横断推進<br>
+    🤝 マネジメントスキル・調整力を強化
   </div>
-  <div class="stage">
-    <div class="box goal">🌟 <b>ゴール：</b>複数軸統合によるキャリア資本の確立</div>
+  <div class="phase mid" style="grid-column:2; grid-row:2;">
+    🧩 <b>新規事業：</b>MVP開発・事業検証<br>
+    💡 事業構築・仮説実証能力
+  </div>
+  <div class="phase mid" style="grid-column:3; grid-row:2;">
+    ⚙️ <b>開発DX：</b>改善・自動化・AI導入<br>
+    📊 データ分析・プロジェクト主導力
+  </div>
+
+  <!-- 長期層（上段） -->
+  <div class="phase long" style="grid-column:1; grid-row:1;">
+    🏢 <b>本業：</b>戦略的ポジション・経営参画<br>
+    🧭 組織視点・経営判断力
+  </div>
+  <div class="phase long" style="grid-column:2; grid-row:1;">
+    🌱 <b>新規事業：</b>スケール化・収益モデル構築<br>
+    🚀 事業スケーリング・資本形成
+  </div>
+  <div class="phase long" style="grid-column:3; grid-row:1;">
+    🧠 <b>開発DX：</b>全社変革・技術戦略リード<br>
+    🌐 組織横断的リーダーシップ
+  </div>
+
+  <!-- キャリア転換＆ゴール -->
+  <div class="phase milestone" style="grid-column:2; grid-row:2/3; align-self:end;">
+    🌿 <b>転職：</b>新環境での挑戦・キャリア転換
+  </div>
+  <div class="phase goal" style="grid-column:3; grid-row:1/2; align-self:start;">
+    🌟 <b>ゴール：</b>複数軸統合によるキャリア資本の確立
+  </div>
+
+  <!-- コネクタ線（オプション） -->
+  <div class="connector">
+    <svg>
+      <line x1="10%" y1="85%" x2="10%" y2="15%" stroke="#aaa" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <line x1="50%" y1="85%" x2="50%" y2="15%" stroke="#aaa" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <line x1="90%" y1="85%" x2="90%" y2="15%" stroke="#aaa" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <line x1="5%" y1="80%" x2="95%" y2="80%" stroke="#aaa" stroke-width="1"/>
+      <line x1="5%" y1="50%" x2="95%" y2="50%" stroke="#aaa" stroke-width="1"/>
+      <line x1="5%" y1="20%" x2="95%" y2="20%" stroke="#aaa" stroke-width="1"/>
+    </svg>
   </div>
 </div>
 
