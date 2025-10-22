@@ -7,8 +7,9 @@ body {
   font-family: "Hiragino Sans", "Meiryo", sans-serif;
   background: linear-gradient(to top right, #f9f9f9, #eef4ff);
   margin: 0;
-  padding: 40px;
+  padding: 40px 20px;
   line-height: 1.6;
+  min-height: 100vh;
 }
 h1 {
   text-align: center;
@@ -17,18 +18,24 @@ h1 {
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 200px);
+  grid-template-rows: repeat(3, auto);
   gap: 24px;
   position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .phase {
   border-radius: 10px;
-  padding: 14px;
+  padding: 16px;
   box-shadow: 0 3px 8px rgba(0,0,0,0.1);
   font-size: 14px;
   background-color: #fff;
   position: relative;
   transition: all 0.25s ease;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .phase:hover {
   transform: translateY(-4px);
@@ -47,16 +54,19 @@ h1 {
   position: absolute;
   font-weight: bold;
   color: #555;
+  font-size: 12px;
 }
 .axisX {
   bottom: -35px;
   left: 50%;
   transform: translateX(-50%);
+  white-space: nowrap;
 }
 .axisY {
   top: 50%;
-  left: -80px;
+  left: -100px;
   transform: translateY(-50%) rotate(-90deg);
+  white-space: nowrap;
 }
 
 /* 線でフェーズを結ぶ */
@@ -69,6 +79,35 @@ h1 {
 .connector svg {
   width: 100%;
   height: 100%;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  body {
+    padding: 20px 10px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(9, auto);
+    gap: 16px;
+  }
+  .phase {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+    min-height: 100px;
+  }
+  .axisY {
+    display: none;
+  }
+  .axisX {
+    position: static;
+    text-align: center;
+    margin-top: 20px;
+    transform: none;
+  }
+  h1 {
+    font-size: 1.5em;
+  }
 }
 </style>
 </head>
